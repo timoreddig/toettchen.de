@@ -1,0 +1,22 @@
+<?php if (WV16_Users::isLoggedIn()): ?>
+	<h3>Logout</h3>
+	<?php $user = WV16_Users::getCurrentUser(); ?>
+	<p>Du bist im Moment als <strong><?php print sly_html($user->getLogin()) ?></strong> eingeloggt. <a href="/kaufen/warenkorb/?action=logout">ausloggen</a></p>
+
+	<?php include _VARISALE_DEVELOP.'usermngr-sets.phtml'; ?>
+	<?php include _VARISALE_DEVELOP.'usermngr-profile.phtml'; ?>
+<?php else: ?>
+	<h3>Login</h3>
+
+	<form method="post" action="/kaufen/warenkorb/?action=login">
+		<div>
+			<label for="username">Benutzername:</label><input type="text" name="username" id="username" />
+		</div>
+		<div>
+			<label for="password">Passwort:</label><input type="password" name="password" id="password" />
+		</div>
+		<div>
+			<input type="submit" value="Login" />
+		</div>
+	</form>
+<?php endif; ?>

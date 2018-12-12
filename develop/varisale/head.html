@@ -1,0 +1,63 @@
+<?php
+function _varisale_data_uri($file, $mime) {
+	$contents = file_get_contents($file);
+	$base64   = base64_encode($contents);
+	return 'data:'.$mime.';base64,'.$base64;
+}
+?>
+<title>varisale Testseite</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Language" content="de" />
+<style type="text/css">
+	body, html, td, th, p, a { font-size: 13px; font-family: Segoe UI; }
+	td.costs, td.brutto, td.netto, td.totalbrutto, td.totalnetto { text-align: right; }
+	table.cart, table.products { border-spacing: 0; }
+	td, th { padding: 4px 2px; }
+	th { border-bottom: 1px solid black; font-weight: bold; padding: 5px; text-align: left; }
+	table.cart th { border-bottom: none; }
+	tbody.taxrates tr:first-child td { border-top: 1px solid black; }
+	tbody.taxrates tr.totals td { border-top: 1px solid black; }
+	tbody tr.item.summary td { border-top: 1px solid black; }
+	tbody tr.item.values td { border-top: 1px solid #CCC; }
+	tbody.summary tr.total td { border-top: 1px solid black; }
+	tbody.final td { border-top: 1px solid black; font-weight: bold; }
+	a, a:visited { color: blue; text-decoration: none; }
+	a:hover { text-decoration: underline; }
+	dl.values { margin: 0; }
+	tr.product td { border-bottom: 1px solid #CCC; }
+	dl.values dt { float: left; width: 70px; padding-right: 15px; font-weight: bold; }
+	td.values { min-width: 300px; }
+	form div { line-height: 28px; }
+	form label { float: left; width: 100px; line-height: 28px; }
+	form input.text, form select { width: 200px; }
+	input.submit { margin-left: 100px; }
+	input.quantity { width: 20px; }
+	p.message {
+		border: 2px solid black;
+		-webkit-border-radius: 6px;
+		-moz-border-radius: 6px;
+		border-radius: 6px;
+		padding: 5px;
+		margin: 10px auto;
+		width: 500px;
+	}
+	p.message span {
+		padding-left: 20px;
+		line-height: 18px;
+		background: transparent 0px 1px no-repeat;
+	}
+	p.success.message {
+		border-color: green;
+		background-image: url('<?php print _varisale_data_uri(dirname(__FILE__).'/images/success.png', 'image/png'); ?>');
+	}
+	p.error.message {
+		border-color: red;
+		background-image: url('<?php print _varisale_data_uri(dirname(__FILE__).'/images/error.png', 'image/png'); ?>');
+	}
+	p.success span {
+		background-image: url('<?php print _varisale_data_uri(dirname(__FILE__).'/images/success-icon.png', 'image/png'); ?>');
+	}
+	p.error span {
+		background-image: url('<?php print _varisale_data_uri(dirname(__FILE__).'/images/error-icon.png', 'image/png'); ?>');
+	}
+</style>

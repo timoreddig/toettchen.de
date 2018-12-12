@@ -1,0 +1,224 @@
+# Kopiere diese Datei nach develop/config!
+
+# Die folgenden Metainfos sind nur relevant, wenn das Projekt Sally-Nutzer anstelle
+# von FrontendUser verwendet.
+metainfo:
+   users:
+      confirmation_code:
+         title: Bestätigungscode
+         datatype: stringline
+      confirmed:
+         title: bestätigt
+         datatype: boolean
+         helptext: 'Benutzer sind bestätigt, wenn Sie den Double Opt-In erfolgreich abgeschlossen haben.'
+
+userworkflows:
+   # Hier wird ein Export namens 'users' definiert. Es können weitere Exports
+   # nach Beliebigen ergänzt werden.
+   exports:
+      users:
+         title: Vollständige Benutzerdaten
+         roles: ~                               # ~ = alle Rollen, sonst [role1,role2,...]
+         attributes: [confirmed]
+   passwordstrength:
+      minlength: 10
+      minupper: 0
+      minlower: 0
+      minnumbers: 0
+      minspecial: 0
+      crackdict: sally/addons/userworkflows/dict/combined   # immer ohne .pwd Erweiterung!
+   url_helper:
+      name_callback: []
+   placeholders:
+      params:
+        format: '#%s#'
+        #label: ''
+        groups:
+          frontenduser: default
+          #metainfo: ''
+          #varisale: ''
+
+   # Um festzulegen welcher Nutzertyp auf dieser Seite Verwendung findet, setze
+   # diesen Wert auf 'frontenduser' für Nutzer aus dem AddOn Frondenduser oder auf
+   # 'sally', um Sally-User zu nutzen.
+   usertype: frontenduser
+
+   # Setze diesen Wert auf true, um für Benutzer mittels realURL2 URLs erzeugen
+   # zu lassen. Dies ist im Moment nicht für FrontendUser-System implementiert
+   # und kann daher nur mit Sally-Benutzern genutzt werden!
+   enable_urls_for_users: false
+
+global_settings:
+   userworkflows.mail.from_name:
+      title: eMail-Name
+      datatype: stringline
+      pagename: Benutzerverwaltung
+      group: 'Ausgehende eMails'
+      multilingual: true
+   userworkflows.mail.from_email:
+      title: eMail-Adresse
+      datatype: stringline
+      pagename: Benutzerverwaltung
+      group: 'Ausgehende eMails'
+      multilingual: true
+
+   userworkflows.mail.activation.to:
+      title: 'Empfänger (Template)'
+      datatype: stringline
+      pagename: Benutzerverwaltung
+      group: 'eMail-Benachrichtigung des Benutzers, wenn er im Backend aktiviert wird'
+      multilingual: true
+      helptext: In diesem Feld können Sie die o.g. Platzhalter verwenden.
+   userworkflows.mail.activation.subject:
+      title: Betreff
+      datatype: stringline
+      pagename: Benutzerverwaltung
+      group: 'eMail-Benachrichtigung des Benutzers, wenn er im Backend aktiviert wird'
+      multilingual: true
+      helptext: In diesem Feld können Sie die o.g. Platzhalter verwenden.
+   userworkflows.mail.activation.body:
+      title: 'Inhalt (Template)'
+      datatype: stringtext
+      pagename: Benutzerverwaltung
+      group: 'eMail-Benachrichtigung des Benutzers, wenn er im Backend aktiviert wird'
+      multilingual: true
+      helptext: In diesem Feld können Sie die o.g. Platzhalter verwenden.
+
+   userworkflows.mail.confirmation.to:
+      title: 'Empfänger (Template)'
+      datatype: stringline
+      pagename: Benutzerverwaltung
+      group: 'eMail-Bestätigungsaufforderung an den neuen Benutzer'
+      multilingual: true
+      helptext: In diesem Feld können Sie die o.g. Platzhalter verwenden.
+   userworkflows.mail.confirmation.subject:
+      title: Betreff
+      datatype: stringline
+      pagename: Benutzerverwaltung
+      group: 'eMail-Bestätigungsaufforderung an den neuen Benutzer'
+      multilingual: true
+      helptext: In diesem Feld können Sie die o.g. Platzhalter verwenden.
+   userworkflows.mail.confirmation.body:
+      title: 'Inhalt (Template)'
+      datatype: stringtext
+      pagename: Benutzerverwaltung
+      group: 'eMail-Bestätigungsaufforderung an den neuen Benutzer'
+      multilingual: true
+      helptext: 'In diesem Feld können Sie die o.g. Platzhalter sowie #CONFIRMATION_URL# für den vollständigen Bestätigungslink verwenden.'
+
+   userworkflows.mail.report.add.to:
+      title: Empfänger
+      datatype: stringline
+      pagename: Benutzerverwaltung
+      group: 'eMail-Benachrichtigung bei neuen Benutzern (für den Administrator)'
+   userworkflows.mail.report.add.subject:
+      title: Betreff
+      datatype: stringline
+      pagename: Benutzerverwaltung
+      group: 'eMail-Benachrichtigung bei neuen Benutzern (für den Administrator)'
+      multilingual: true
+      helptext: In diesem Feld können Sie die o.g. Platzhalter verwenden.
+   userworkflows.mail.report.add.body:
+      title: 'Inhalt (Template)'
+      datatype: stringtext
+      pagename: Benutzerverwaltung
+      group: 'eMail-Benachrichtigung bei neuen Benutzern (für den Administrator)'
+      multilingual: true
+      helptext: In diesem Feld können Sie die o.g. Platzhalter verwenden.
+
+   userworkflows.mail.recoveryrequest.to:
+      title: 'Empfänger (Template)'
+      datatype: stringline
+      pagename: Benutzerverwaltung
+      group: eMail-Passwort-vergessen-Anforderung
+      multilingual: true
+      helptext: In diesem Feld können Sie die o.g. Platzhalter verwenden.
+   userworkflows.mail.recoveryrequest.subject:
+      title: Betreff
+      datatype: stringline
+      pagename: Benutzerverwaltung
+      group: eMail-Passwort-vergessen-Anforderung
+      multilingual: true
+      helptext: In diesem Feld können Sie die o.g. Platzhalter verwenden.
+   userworkflows.mail.recoveryrequest.body:
+      title: 'Inhalt (Template)'
+      datatype: stringtext
+      pagename: Benutzerverwaltung
+      group: eMail-Passwort-vergessen-Anforderung
+      multilingual: true
+      helptext: 'In diesem Feld können Sie die o.g. Platzhalter sowie #LINK# für den vollständigen Bestätigungslink verwenden.'
+
+   userworkflows.mail.recovery.to:
+      title: 'Empfänger (Template)'
+      datatype: stringline
+      pagename: Benutzerverwaltung
+      group: eMail-Passwort-vergessen
+      multilingual: true
+      helptext: In diesem Feld können Sie die o.g. Platzhalter verwenden.
+   userworkflows.mail.recovery.subject:
+      title: Betreff
+      datatype: stringline
+      pagename: Benutzerverwaltung
+      group: eMail-Passwort-vergessen
+      multilingual: true
+      helptext: In diesem Feld können Sie die o.g. Platzhalter verwenden.
+   userworkflows.mail.recovery.body:
+      title: 'Inhalt (Template)'
+      datatype: stringtext
+      pagename: Benutzerverwaltung
+      group: eMail-Passwort-vergessen
+      multilingual: true
+      helptext: In diesem Feld können Sie die o.g. Platzhalter verwenden.
+
+   userworkflows.mail.report.update.to:
+      title: Empfänger
+      datatype: stringline
+      pagename: Benutzerverwaltung
+      group: 'eMail-Benachrichtigung bei Aktualisierung eines Benutzers (für den Administrator)'
+   userworkflows.mail.report.update.subject:
+      title: Betreff
+      datatype: stringline
+      pagename: Benutzerverwaltung
+      group: 'eMail-Benachrichtigung bei Aktualisierung eines Benutzers (für den Administrator)'
+      multilingual: true
+      helptext: In diesem Feld können Sie die o.g. Platzhalter verwenden.
+   userworkflows.mail.report.update.body:
+      title: 'Inhalt (Template)'
+      datatype: stringtext
+      pagename: Benutzerverwaltung
+      group: 'eMail-Benachrichtigung bei Aktualisierung eines Benutzers (für den Administrator)'
+      multilingual: true
+      helptext: |
+         In diesem Feld können Sie zusätzlich zu den o.g. Platzhalter jeweils Platzhalter wie #BEFORE_FIRSTNAME#
+         oder #BEFORE_STREET# verwenden, um auf die ursprünglichen Daten zuzugreifen.
+
+   userworkflows.articles.validation:
+      title: Validierungsartikel
+      datatype: linkbutton
+      params: {required: true}
+      helptext: 'Dieser Artikel muss die Validierung des Bestätigungscodes (= entsprechendes Modul) für den Benutzer ermöglichen.'
+      pagename: Benutzerverwaltung
+      group: Validierungsartikel
+   userworkflows.articles.recovery:
+      title: 'Passwort zurücksetzen'
+      datatype: linkbutton
+      params: {required: true}
+      helptext: 'Dieser Artikel muss das Zurücksetzen des Passworts für den Benutzer ermöglichen.'
+      pagename: Benutzerverwaltung
+      group: Validierungsartikel
+
+   userworkflows.route:
+      title: Profilroute
+      datatype: stringline
+      pagename: Benutzerverwaltung
+      group: realURL2-Routing
+      local: true
+      multilingual: true
+   userworkflows.article:
+      title: Profil-Artikel
+      datatype: link
+      pagename: Benutzerverwaltung
+      group: realURL2-Routing
+      helptext: Dieser Artikel übernimmt die Anzeige eines einzelnen Benutzerprofils.
+      local: true
+      multilingual: true

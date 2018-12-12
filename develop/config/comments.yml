@@ -1,0 +1,7 @@
+wv:
+   comments:
+      notify_by_feedback: true
+      notify_by_email: false
+      log_actions: false
+      assign_edit_keys: false
+      allowed_html_tags: '<code><em><i><strong><b><strike><blockquote><a><abbr>'

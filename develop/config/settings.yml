@@ -1,0 +1,16 @@
+global_settings:
+  imprint:
+    title: Impressum
+    pagename: Einstellungen
+    datatype: linkbutton
+    group: Footerlinks
+  contact:
+    title: Kontakt
+    pagename: Einstellungen
+    datatype: linkbutton
+    group: Footerlinks
+  newsletter:
+    title: Newsletter
+    pagename: Einstellungen
+    datatype: linkbutton
+    group: Footerlinks

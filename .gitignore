@@ -1,0 +1,16 @@
+sftp-config.json
+.DS_Store
+syntax:regexp
+^data/dyn/.*
+^data/config/.*
+^data/temp/.*
+^\.project
+!Backup toettchen.de/.*
+^\.buildpath
+^\.settings/.*
+^nbproject/.*
+^sally/*
+/\.git/
+\.hg_archival.txt
+\.sublime-project
+\.sublime-workspace

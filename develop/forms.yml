@@ -1,0 +1,98 @@
+kontaktformular:
+  name: Kontaktformular
+  fields: [firstname, lastname, email, message]
+  required: [firstname, lastname, email, message]
+  validators:
+    name:
+      string:
+        maxlen: 120
+        minlen: 2
+    email: mail
+  processors:
+    mail:
+      type: mail
+  renderer:
+    default:
+      _type: form
+      id: 'kontaktformular'
+      fields:
+        _info: { _type: form_message, wrap: {div: status } }
+        main:
+          _type: list
+          wrap_item: {div: widget }
+          fields:
+            firstname:       { _type: text,      label: 'Vorname: *' }
+            lastname:        { _type: text,      label: 'Nachname: *' }
+            email:           { _type: text,      label: 'E-Mail-Adresse: *' }
+            message:         { _type: textarea,  label: 'Nachricht: *' }
+        footer:
+          _type: list
+          wrap: {div: footer}
+          fields:
+            _note: {_type: plaintext, text: '* Pflichtangaben', wrap: {p: notice} }
+            _submit: { _type: submit, value: 'Absenden', class: submit }
+mailchimp_subscription:
+  name: Mailchimp Subscription
+  translate: false
+  fields: [title, firstname, lastname, email]
+  required: [title, firstname, lastname, email]
+  validators:
+    email: mail
+  processors:
+    subscription:
+      type: subscription
+  renderer:
+    default:
+      _type: form
+      id: 'subscription'
+      fields:
+        _info: { _type: form_message, wrap: {div: status } }
+        main:
+          _type: list
+          wrap_item: {div: widget }
+          fields:
+            title:     { _type: text, label: 'Anrede:' }
+            firstname: { _type: text, label: 'Vorname:' }
+            lastname:  { _type: text, label: 'Nachname:' }
+            email:     { _type: text, label: 'E-Mail-Adresse: *' }
+        footer:
+          _type: list
+          wrap: {div: footer}
+          fields:
+            _note:   {_type: plaintext, text: '* Pflichtangaben', wrap: {p: notice} }
+            _submit: { _type: submit, value: 'Absenden', class: submit }
+mailchimp_unsubscription:
+  name: Mailchimp Unsubscription
+  translate: false
+  fields: [email]
+  required: [email]
+  validators:
+    email: mail
+  processors:
+    unsubscription:
+      type: unsubscription
+  renderer:
+    default:
+      _type: form
+      id: 'unsubscription'
+      fields:
+        _info: { _type: form_message, wrap: {div: status } }
+        main:
+          _type: list
+          wrap_item: {div: widget }
+          fields:
+            email:     { _type: text, label: 'E-Mail-Adresse: *' }
+        footer:
+          _type: list
+          wrap: {div: footer}
+          fields:
+            _note: {_type: plaintext, text: '* Pflichtangaben', wrap: {p: notice} }
+            _submit: { _type: submit, value: 'Absenden', class: submit }
+_static:
+  processors:
+    subscription: WV30_Processor_Mailchimp_Subscription
+    unsubscription: WV30_Processor_Mailchimp_Unsubscription
+  widgets:
+    guestbook_id: WV19_Widget_Formevaluation_GuestbookId
+    guestbook_type: WV19_Widget_Formevaluation_GuestbookType
+    guestbook_entry_id: WV19_Widget_Formevaluation_EntryId

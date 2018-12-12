@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /backend/
+Sitemap: http://www.toettchen.de/sitemap.xml

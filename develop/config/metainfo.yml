@@ -1,0 +1,11 @@
+# optional integration in varilog (the famous blog addOn for Sally)
+# Copy this file to develop/config to and clear your cache once to
+# add this special metainfo.
+
+metainfo:
+  articles:
+    varilog_allow_comments:
+      title: 'translate:wv19_metainfo_comment'
+      datatype: boolean
+      types: [] # add your varilog article type here
+      helptext: 'Hier können Sie einstellen, ob für diesen Artikel die Kommentarfunktion eingeschaltet sein soll.'

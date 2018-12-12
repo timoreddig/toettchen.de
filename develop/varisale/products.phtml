@@ -1,0 +1,12 @@
+<?php $products = Varisale_Provider::filterProducts(new Varisale_Filter_CLang()); ?>
+<?php foreach ($products as $product): ?>
+<div class="product">
+	<h2 class="title"><?php print sly_html($product->getTitle()) ?></h2>
+	<div class="image"><img src="imageresize/c162w__c140h__<?php print sly_html($product->getValue('image')) ?>" /></div>
+	<p class="description"><?php print sly_html($product->getValue('description')) ?></p>
+	<p class="delivery_time">Lieferzeit: <?php print sly_html($product->getValue('delivery_time')) ?></p>
+	<p class="weight">Gewicht: <?php print sly_html($product->getValue('weight')) ?></p>	
+	<p class="price"><strong><?php print sly_html($product->getBruttoPrice()) ?></strong></p>
+	<p><a href="/kaufen/warenkorb/?action=addtocart&amp;ident=<?php print $product->getID() ?>,<?php print $product->getClang() ?>">rein damit!</a></p>
+</div>
+<?php endforeach; ?>

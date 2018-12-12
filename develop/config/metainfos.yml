@@ -1,0 +1,50 @@
+metainfo:
+  articles:
+    meta_title:
+      title: Alternativer Seitentitel
+      datatype: stringline
+      metapage: true
+    meta_description:
+      title: Meta-Beschreibung
+      datatype: stringtext
+      metapage: true
+    mood:
+      title: Moodbild
+      datatype: media
+      metapage: false
+      types: [homepage]
+    varilog_createdate:
+      title: Erstellungsdatum
+      datatype: datetime
+      params: {style: withtime}
+      helptext: 'Hier können Sie ein alternatives Veröffentlichungsdatum angeben, wenn Sie diesen Artikel z.B. später online stellen. Ist dieses Feld leer, wird beim Speichern des Artikels das Erstellungsdatum des Artikels übernommen.'
+      types: [varilog]
+    varilog_tags:
+      title: Tags
+      datatype: tags
+      params: {sep: ',;|', space: false}
+      helptext: 'Hier können Sie Tags zu dem Artikel durch Komma, Semikolon oder | getrennt eintragen.'
+      types: [varilog]
+    varilog_categories:
+      title: Kategorien
+      datatype: select
+      params:
+        source: query
+        query: 'SELECT id, label FROM %%PREFIX%%wv32_categories WHERE clang = %%CLANG%% ORDER BY label'
+        style: select
+        size: 10
+        min: 0
+        max: 100
+      helptext: 'Hier können Sie Kategorien zu dem Artikel auswählen.'
+      types: [varilog]
+    varilog_trackbacks:
+      title: Trackbacks
+      datatype: stringtext
+      params: {css: 'height:50px'}
+      helptext: 'Geben Sie eine URL pro Zeile ein.'
+      types: [varilog]
+    varilog_allow_comments:
+      title: 'translate:wv19_metainfo_comment'
+      datatype: boolean
+      types: [varilog] # add your varilog article type here
+      helptext: 'Hier können Sie einstellen, ob für diesen Artikel die Kommentarfunktion eingeschaltet sein soll.'

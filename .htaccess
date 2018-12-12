@@ -1,0 +1,71 @@
+# Copyright (c) 2013, webvariants GbR, http://www.webvariants.de
+#
+# This file is released under the terms of the MIT license. You can find the
+# complete text in the attached LICENSE file or online at:
+#
+# http://www.opensource.org/licenses/mit-license.php
+
+RewriteEngine On
+# RewriteBase /
+
+# Don't allow access to certain files
+<FilesMatch "^((composer\.(json|lock))|version|LICENSE)$">
+	Deny from all
+</FilesMatch>
+
+# Single-Domain
+RewriteCond %{HTTP_HOST} ^toettchen\.de$
+RewriteRule ^(.*)$ http://www.toettchen.de/$1 [R=301,L]
+
+# Sally Legacy Backend
+RewriteRule ^backend/assets/(.*?)$ sally/backend/assets/$1 [L]
+
+# Sally Setup
+RewriteRule ^setup/assets/(.*?)$ sally/setup/assets/$1 [L]
+
+# Image Resize
+RewriteRule ^imageresize/(.+)$ data/mediapool/$1 [L]
+
+# Deployer
+RewriteRule ^assets/([^/]+)/deployer\.([a-f0-9]+)\.min\.(css|js|less)$ data/dyn/public/webvariants/deployer/compressed_$2.$3
+
+# Assets Cache
+RewriteCond %{REQUEST_FILENAME}  \.(less|css|js|gif|jpg|jpeg|png|swf|ico|pdf|webp)$
+RewriteCond %{REQUEST_URI}       !wym_styles.css$
+RewriteRule ^(.*)$               data/dyn/public/sally/static-cache/$1 [L]
+
+RewriteCond %{REQUEST_FILENAME}  !-f
+RewriteCond %{REQUEST_FILENAME}  !-d
+RewriteCond %{REQUEST_FILENAME}  !-l
+RewriteCond %{REQUEST_URI}       !^assets/.*
+RewriteCond %{REQUEST_URI}       !^data/.*
+RewriteCond %{REQUEST_URI}       !^sally/.*
+RewriteRule .*                   index.php
+
+## Redirects
+redirect 301 /toettchen/toettchen-rezepte.html /toettchen/
+redirect 301 /kontakt/kontakt.html /kontakt.html
+redirect 301 /links.html /links/
+redirect 301 /default/links.html /links/
+redirect 301 /links-so.html /links/
+redirect 301 /die-lieben-verwandten.html /die-lieben-verwandten/
+redirect 301 /start/startseite.html /
+redirect 301 /default/toettchen/rezepte.html /toettchen/
+redirect 301 /rezept/rezept02/rezept02.html /toettchen/kalbs-sherry-toettchen/
+redirect 301 /rezepte-bilder/rezept-1.html /toettchen/muensterlaender-toettchen/
+redirect 301 /aktuelles/aktuelles.html /aktuelles/
+redirect 301 /toettchen-test.html /toettchen-test/
+redirect 301 /toettchen/kalbs-sherry-toettchen/kalbs-sherry-toettchen.html /toettchen/kalbs-sherry-toettchen/
+redirect 301 /toettchen/muensterlaender+toettchen/muensterlaender+toettchen.html /toettchen/muensterlaender-toettchen/
+redirect 301 /toettchen/kalbs-toettchen/kalbs-toettchen.html /toettchen/kalbs-toettchen/
+redirect 301 /links/links+und+so.html /links/
+redirect 301 /rezept/rezept04/rezept04.html /toettchen/traditionelles-toettchen/
+redirect 301 /toettchen/traditionelles+toettchen/traditionelles+toettchen.html /toettchen/traditionelles-toettchen/
+redirect 301 /wtig.html /w-t-i-g/
+redirect 301 /wtig/wtig.html /w-t-i-g/
+redirect 301 /startseite.html /
+redirect 301 /die+lieben+verwandten/die+lieben+verwandten.html /die-lieben-verwandten/
+redirect 301 /2-0-Toettchen-Rezepte.html /toettchen/
+redirect 301 /info-post.html /newsletter.html
+redirect 301 /toettchen-test/test.html /toettchen-test/
+redirect 301 /rezepte-bilder.html /toettchen/

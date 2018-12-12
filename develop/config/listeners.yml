@@ -1,0 +1,2 @@
+LISTENERS:
+   SLY_FRONTEND_ROUTER: ['sly_Controller_Frontend_Sitemap::addRoutes']

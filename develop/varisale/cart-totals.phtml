@@ -1,0 +1,21 @@
+<tbody class="summary"><tr class="total">
+	<td>&nbsp;</td>
+	<td class="title" colspan="5">Gesamtbetrag inkl. Steuern</td>
+	<td class="costs"><?php print sly_html($cart->getTotalBrutto(false)) ?></td>
+	<td>&nbsp;</td>
+</tr><?php if ($cart->getBillingMethod()): ?><tr class="billing">
+	<td>&nbsp;</td>
+	<?php $method = $cart->getBillingMethod(); ?>
+	<td class="title" colspan="5">zzgl. <?php print sly_html($method->getTitle()) ?></td>
+	<td class="costs"><?php print sly_html($cart->getBruttoBillingCosts()->format()) ?></td>
+	<td>&nbsp;</td>
+</tr><?php endif; ?><?php if ($cart->getDeliveryMethod()): ?><tr class="delivery">
+	<td>&nbsp;</td>
+	<?php $method = $cart->getDeliveryMethod(); ?>
+	<td class="title" colspan="5">
+		zzgl. <?php print sly_html($method->getTitle()) ?> nach
+		<?php print sly_html($cart->getDeliveryCountry()->getFullName()) ?>
+	</td>
+	<td class="costs"><?php print sly_html($cart->getBruttoDeliveryCosts()->format()) ?></td>
+	<td>&nbsp;</td>
+</tr><?php endif; ?></tbody>

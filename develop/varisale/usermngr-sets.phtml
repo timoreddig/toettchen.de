@@ -1,0 +1,28 @@
+<h3>Meine Profile</h3>
+
+<p><strong>Profile:</strong> <?php
+
+$sets  = $user->getSetIDs();
+$links = array();
+$setID = sly_request('set_id', 'int', reset($sets));
+$_SETS = array();
+
+foreach ($sets as $set) {
+	$user->setSetID($set);
+	$name = WV16_Users::replaceAttributes('#firstname# (#country#)', $user);
+
+	if ($setID == $set) {
+		$links[] = '<a href="?set_id='.$set.'"><strong>'.sly_html($name).'</strong></a>';
+	}
+	else {
+		$links[] = '<a href="?set_id='.$set.'">'.sly_html($name).'</a>';
+	}
+
+	$_SETS[$set] = $name;
+}
+
+print implode(' | ', $links);
+
+?></p>
+
+<p><a href="/kaufen/warenkorb/?set_id=-1">Neues Profil anlegen</a></p>

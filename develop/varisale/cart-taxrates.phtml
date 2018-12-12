@@ -1,0 +1,14 @@
+<tbody class="taxrates"><?php foreach ($cart->getTaxCosts() as $taxID => $costs): ?><tr class="taxrate">
+	<td>&nbsp;</td>
+	<td class="title" colspan="5">
+		<?php $taxrate = Varisale_Factory::getTaxRate($taxID); $country = Varisale::getCurrentCountry(); ?>
+		<?php print sly_html($taxrate->getTitle()) ?>-Anteil (<?php print $taxrate->getCharge($country) ?>)
+	</td>
+	<td class="costs"><?php print sly_html($costs->format()) ?></td>
+	<td>&nbsp;</td>
+</tr><?php endforeach ?><tr class="taxrate totals">
+	<td>&nbsp;</td>
+	<td class="title" colspan="5">enthaltene Steuern</td>
+	<td class="costs"><?php print sly_html($cart->getTotalTaxes()->format()) ?></td>
+	<td>&nbsp;</td>
+</tr></tbody>

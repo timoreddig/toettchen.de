@@ -1,0 +1,14 @@
+<p class="clangs"><strong>Sprachen: </strong><?php
+$links = array();
+foreach (sly_Util_Language::findAll() as $id => $clang) {
+	if ($id == sly_Core::getCurrentClang()) {
+		$links[] = '<a href="index.php?clang='.$id.'"><strong>'.sly_html($clang->getName()).'</strong></a>';
+	}
+	else {
+		$links[] = '<a href="index.php?clang='.$id.'">'.sly_html($clang->getName()).'</a>';
+	}
+}
+
+print implode(' | ', $links);
+?></p>
+<p><strong>Aktuelles Land:</strong> <?php print Varisale::getCurrentCountry()->getFullName() ?></p>

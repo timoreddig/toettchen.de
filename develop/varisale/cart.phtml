@@ -1,0 +1,44 @@
+<?php
+
+$cart = Varisale::getCart();
+
+if ($cart->isEmpty()): ?>
+	<p>Dein Warenkorb ist leer.</p>
+<?php else: ?>
+
+	<?php include _VARISALE_DEVELOP.'cart-deliverymethods.phtml'; ?>
+	<?php include _VARISALE_DEVELOP.'cart-billingmethods.phtml'; ?>
+
+	<form method="post" action="/kaufen/warenkorb/?action=updatecart">
+
+		<table class="cart"><thead><tr>
+			<th>ID</th>
+			<th>Produkt</th>
+			<th>Menge</th>
+			<th>Preis (netto)</th>
+			<th>Preis (brutto)</th>
+			<th>Steuersatz</th>
+			<th>Preis (Summe)</th>
+			<th>Aktion</th>
+		</tr></thead>
+		<?php include _VARISALE_DEVELOP.'cart-items.phtml'; ?>
+		<?php include _VARISALE_DEVELOP.'cart-taxrates.phtml'; ?>
+		<?php include _VARISALE_DEVELOP.'cart-totals.phtml'; ?>
+		<tbody class="final"><tr>
+			<td>&nbsp;</td>
+			<td class="title" colspan="5">zu zahlen</td>
+			<td class="costs"><?php print sly_html($cart->getTotalBrutto()) ?></td>
+			<td>&nbsp;</td>
+		</tr></tbody></table>
+
+		<p><input type="submit" value="Änderungen speichern" /></p>
+
+	</form>
+	<?php sly_dump($cart->canCheckout()) ?>
+	<?php if ($cart->canCheckout()): ?>
+	<form method="post" action="/kaufen/warenkorb/?action=checkout">
+		<p>Sie können den Warenkorb auch in seiner jetzigen Form bestellen.</p>
+		<p><input type="submit" value="Bestellung abschließen" /></p>
+	</form>
+	<?php endif; ?>
+<?php endif; ?>

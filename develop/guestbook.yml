@@ -1,0 +1,49 @@
+# Kopiere mich ins develop-Verzeichnis!
+
+# In dieser Datei werden die einzelnen Gästebücher konfiguriert. Da in einem
+# Projekt potentiell unendlich viele GBs existieren können, identifizieren wir
+# sie hier über ein Muster. Damit gilt ein Konfig-Eintrag automatisch für eine
+# Menge von Gästebüchern.
+
+# Das AddOn kann den Titel von Gästebüchern selber ermitteln, wenn die IDs
+# bestimmten Mustern folgen:
+#  'article_X'    => Sally-Artikel X, aktuelle Sprache
+#  'article_X_Y'  => Sally-Artikel X, Sprache Y
+#  'category_X'   => Sally-Kategorie X, aktuelle Sprache
+#  'category_X_Y' => Sally-Kategorie X, Sprache Y
+#  'medium_X'     => Sally-Datei X
+# Wenn möglich, verwende diese IDs für die Gästebücher. Andernfalls musst du
+# die IDs selber in Titel umwandeln, damit im Backend nicht nur 'foo_12'
+# erscheint. In diesen Fällen musst du auf WV19_GUESTBOOK_TITLE lauschen, um die
+# Übersetzung vorzunehmen.
+
+# Es folgt die Konfiguration eines Projekts, bei dem sowohl Artikel (article_??)
+# und varisale-Produkte (product_??) kommentierbar sind.
+
+-
+   pattern: 'product_*'
+   fields:
+      text: {name: Text, type: textarea}
+   display: [text, wv19_edit_count, wv19_updated]
+   format: '#text%short#'
+   pause: 0
+   visibility: {default: false, onedit: false}
+-
+   pattern: 'article_*'
+   fields:
+      name:     { name: 'Name',     type: 'input'    }
+      email:    { name: 'eMail',    type: 'input'    }
+      homepage: { name: 'Homepage', type: 'input'    }
+      text:     { name: 'Text',     type: 'textarea' }
+   display: ['name', 'email', 'homepage', 'text', 'wv19_edit_count', 'wv19_updated']
+   format: '#text%short#'
+   pause: 0
+   visibility:
+     default: false
+     onedit: false
+
+# Im einfachsten Fall sieht die Konfiguration für alle Gästebücher gleich aus.
+# Dann kann als pattern einfach '*' verwendet werden.
+# Wird für eine Gästebuch-ID keine passende Konfiguration gefunden, wird eine
+# WV19_Exception geworfen (auch bereits wenn ein Eintrag für dieses GB angelegt
+# wird)!
