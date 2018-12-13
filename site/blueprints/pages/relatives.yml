@@ -1,0 +1,40 @@
+title: Verwandte
+
+options:
+  delete: false
+  url: false
+
+tabs:
+  
+  content:
+    sections:
+
+      drafts:
+        extends: sections/relatives
+        headline: Unveröffentlichte Verwandte
+        layout: list
+        status: draft
+
+      published:
+        extends: sections/relatives
+        headline: Veröffentlichte Verwandte
+        status: listed
+        item:
+          image:
+            ratio: 3/2
+
+  seo:
+    label: SEO
+    icon: search
+    sections:
+      seo:
+        type: fields
+        fields:
+          metaTitle:
+            label: Meta-Titel
+            type: text
+            required: true
+          metaDescription:
+            label: Meta-Beschreibung
+            type: textarea
+            buttons: false  

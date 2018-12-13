@@ -1,0 +1,6 @@
+type: files
+headline: Cover
+max: 1
+layout: cards
+item:
+  info: "{{ file.dimensions }}"

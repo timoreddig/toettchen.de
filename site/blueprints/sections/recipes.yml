@@ -1,0 +1,5 @@
+headline: Rezepte
+type: pages
+parent: site.find("recipe")
+status: listed
+templates: default

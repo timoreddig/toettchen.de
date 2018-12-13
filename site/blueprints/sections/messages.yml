@@ -1,0 +1,5 @@
+headline: Neuigkeiten
+type: pages
+parent: site.find("message")
+status: listed
+templates: default
