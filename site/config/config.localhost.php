@@ -10,6 +10,6 @@ return [
 
     'cache' => false,
 
-    'whoops' => true,
+    'whoops' => true
 
 ];

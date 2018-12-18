@@ -41,6 +41,8 @@ return array(
     'Kirby\\Cms\\Asset' => $baseDir . '/src/Cms/Asset.php',
     'Kirby\\Cms\\Auth' => $baseDir . '/src/Cms/Auth.php',
     'Kirby\\Cms\\Blueprint' => $baseDir . '/src/Cms/Blueprint.php',
+    'Kirby\\Cms\\BlueprintFieldTest' => $baseDir . '/tests/Cms/BlueprintFieldTest.php',
+    'Kirby\\Cms\\BlueprintFieldsTest' => $baseDir . '/tests/Cms/BlueprintFieldsTest.php',
     'Kirby\\Cms\\BlueprintTest' => $baseDir . '/tests/Cms/BlueprintTest.php',
     'Kirby\\Cms\\Collection' => $baseDir . '/src/Cms/Collection.php',
     'Kirby\\Cms\\CollectionTest' => $baseDir . '/tests/Cms/CollectionTest.php',

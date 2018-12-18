@@ -141,6 +141,8 @@ class ComposerStaticInit12091bebabd81c9aba88b2aeec22c8d7
         'Kirby\\Cms\\Asset' => __DIR__ . '/../..' . '/src/Cms/Asset.php',
         'Kirby\\Cms\\Auth' => __DIR__ . '/../..' . '/src/Cms/Auth.php',
         'Kirby\\Cms\\Blueprint' => __DIR__ . '/../..' . '/src/Cms/Blueprint.php',
+        'Kirby\\Cms\\BlueprintFieldTest' => __DIR__ . '/../..' . '/tests/Cms/BlueprintFieldTest.php',
+        'Kirby\\Cms\\BlueprintFieldsTest' => __DIR__ . '/../..' . '/tests/Cms/BlueprintFieldsTest.php',
         'Kirby\\Cms\\BlueprintTest' => __DIR__ . '/../..' . '/tests/Cms/BlueprintTest.php',
         'Kirby\\Cms\\Collection' => __DIR__ . '/../..' . '/src/Cms/Collection.php',
         'Kirby\\Cms\\CollectionTest' => __DIR__ . '/../..' . '/tests/Cms/CollectionTest.php',
