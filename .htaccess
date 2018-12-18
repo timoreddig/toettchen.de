@@ -40,7 +40,19 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*) index.php [L]
 
 # rewrite old urls
+Redirect 301 /rezepte-bilder.html https://www.toettchen.de/toettchen-rezepte
+Redirect 301 /toettchen/muensterlaender-toettchen/ https://www.toettchen.de/toettchen-rezepte/muensterlaender-toettchen
+Redirect 301 /toettchen/kalbs-sherry-toettchen/ https://www.toettchen.de/toettchen-rezepte/kalbs-sherry-toettchen
+Redirect 301 /toettchen/kalbs-toettchen/ https://www.toettchen.de/toettchen-rezepte/kalbs-toettchen
 Redirect 301 /toettchen/traditionelles-toettchen/ https://www.toettchen.de/toettchen-rezepte/traditionelles-toettchen
+Redirect 301 /rezept/rezept01/rezept01.html https://www.toettchen.de/toettchen-rezepte/muensterlaender-toettchen
+Redirect 301 /rezept/rezept02/rezept02.html https://www.toettchen.de/toettchen-rezepte/kalbs-sherry-toettchen
+Redirect 301 /rezept/rezept03/rezept03.html https://www.toettchen.de/toettchen-rezepte/kalbs-toettchen
+Redirect 301 /rezept/rezept04/rezept04.html https://www.toettchen.de/toettchen-rezepte/traditionelles-toettchen
+Redirect 301 /rezepte-bilder/rezept-1.html https://www.toettchen.de/toettchen-rezepte/muensterlaender-toettchen
+Redirect 301 /rezepte-bilder/rezept-2.html https://www.toettchen.de/toettchen-rezepte/kalbs-sherry-toettchen
+Redirect 301 /rezepte-bilder/rezept-3.html https://www.toettchen.de/toettchen-rezepte/kalbs-toettchen
+Redirect 301 /rezepte-bilder/rezept-4.html https://www.toettchen.de/toettchen-rezepte/traditionelles-toettchen
 
 </IfModule>
 
