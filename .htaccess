@@ -40,7 +40,7 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*) index.php [L]
 
 # rewrite old urls
-RewriteRule  ^toettchen/traditionelles-toettchen/  https://www.toettchen.de/toettchen-rezepte/traditionelles-toettchen  [R=301]
+Redirect 301 /toettchen/traditionelles-toettchen/ https://www.toettchen.de/toettchen-rezepte/traditionelles-toettchen
 
 </IfModule>
 
