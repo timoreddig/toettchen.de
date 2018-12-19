@@ -287,14 +287,7 @@ trait PageActions
         $this->kirby()->trigger('page.' . $action . ':before', ...$arguments);
         $result = $callback(...$arguments);
         $this->kirby()->trigger('page.' . $action . ':after', $result, $old);
-
-        // flush the pages cache, except the changeNum action is run
-        // flushing it there, would be triggered way too often.
-        // triggering it on sort and hide is absolutely enough
-        if ($action !== 'changeNum') {
-            $this->kirby()->cache('pages')->flush();
-        }
-
+        $this->kirby()->cache('pages')->flush();
         return $result;
     }
 
@@ -469,9 +462,8 @@ trait PageActions
                 $page->parentModel()->drafts()->remove($page);
             } else {
                 $page->parentModel()->children()->remove($page);
+                $page->resortSiblingsAfterUnlisting();
             }
-
-            $page->resortSiblingsAfterUnlisting();
 
             return true;
         });
@@ -483,7 +475,10 @@ trait PageActions
             return $this;
         }
 
-        $page = $this->clone(['isDraft' => false]);
+        $page = $this->clone([
+            'isDraft' => false,
+            'root'    => null
+        ]);
 
         // actually do it on disk
         if ($this->exists() === true) {

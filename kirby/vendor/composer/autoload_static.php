@@ -246,7 +246,6 @@ class ComposerStaticInit12091bebabd81c9aba88b2aeec22c8d7
         'Kirby\\Cms\\R' => __DIR__ . '/../..' . '/src/Cms/R.php',
         'Kirby\\Cms\\Responder' => __DIR__ . '/../..' . '/src/Cms/Responder.php',
         'Kirby\\Cms\\Response' => __DIR__ . '/../..' . '/src/Cms/Response.php',
-        'Kirby\\Cms\\ResponseTest' => __DIR__ . '/../..' . '/tests/Cms/ResponseTest.php',
         'Kirby\\Cms\\Role' => __DIR__ . '/../..' . '/src/Cms/Role.php',
         'Kirby\\Cms\\RoleTest' => __DIR__ . '/../..' . '/tests/Cms/RoleTest.php',
         'Kirby\\Cms\\Roles' => __DIR__ . '/../..' . '/src/Cms/Roles.php',

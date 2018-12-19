@@ -146,7 +146,6 @@ return array(
     'Kirby\\Cms\\R' => $baseDir . '/src/Cms/R.php',
     'Kirby\\Cms\\Responder' => $baseDir . '/src/Cms/Responder.php',
     'Kirby\\Cms\\Response' => $baseDir . '/src/Cms/Response.php',
-    'Kirby\\Cms\\ResponseTest' => $baseDir . '/tests/Cms/ResponseTest.php',
     'Kirby\\Cms\\Role' => $baseDir . '/src/Cms/Role.php',
     'Kirby\\Cms\\RoleTest' => $baseDir . '/tests/Cms/RoleTest.php',
     'Kirby\\Cms\\Roles' => $baseDir . '/src/Cms/Roles.php',
