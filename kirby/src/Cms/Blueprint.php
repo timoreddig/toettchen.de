@@ -208,7 +208,6 @@ class Blueprint
 
         // remove the extends flag
         unset($props['extends']);
-
         return $props;
     }
 
@@ -531,7 +530,7 @@ class Blueprint
      * Normalizes blueprint options. This must be used in the
      * constructor of an extended class, if you want to make use of it.
      *
-     * @param array|true|false|null $options
+     * @param array|true|false|null|string $options
      * @param array $defaults
      * @param array $aliases
      * @return array
@@ -549,6 +548,9 @@ class Blueprint
                 return false;
             }, $defaults);
         }
+
+        // extend options if possible
+        $options = $this->extend($options);
 
         foreach ($options as $key => $value) {
             $alias = $aliases[$key] ?? null;
@@ -603,7 +605,18 @@ class Blueprint
                         ]
                     ];
                 } else {
-                    $this->fields = array_merge($this->fields, $fields);
+                    foreach ($fields as $fieldName => $fieldProps) {
+                        if (isset($this->fields[$fieldName]) === true) {
+                            $this->fields[$fieldName] = $fields[$fieldName] = [
+                                'type'  => 'info',
+                                'label' => $fieldProps['label'] ?? 'Error',
+                                'text'  => 'The field name <strong>"' . $fieldName . '"</strong> already exists in your blueprint.',
+                                'theme' => 'negative'
+                            ];
+                        } else {
+                            $this->fields[$fieldName] = $fieldProps;
+                        }
+                    }
                 }
 
                 $sections[$sectionName]['fields'] = $fields;

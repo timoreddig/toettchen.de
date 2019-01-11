@@ -181,11 +181,11 @@ class Site extends ModelWithContent
         $sections   = $inSection !== null ? [$blueprint->section($inSection)] : $blueprint->sections();
 
         foreach ($sections as $section) {
-            if ($section === null || $section->type() !== 'pages') {
+            if ($section === null) {
                 continue;
             }
 
-            foreach ($section->blueprints() as $blueprint) {
+            foreach ((array)$section->blueprints() as $blueprint) {
                 $blueprints[$blueprint['name']] = $blueprint;
             }
         }
@@ -666,9 +666,9 @@ class Site extends ModelWithContent
      * modified after the given unix timestamp
      * This is mainly used to auto-update the cache
      *
-     * @return boolean
+     * @return bool
      */
-    public function wasModifiedAfter($time): boolean
+    public function wasModifiedAfter($time): bool
     {
         return Dir::wasModifiedAfter($this->root(), $time);
     }

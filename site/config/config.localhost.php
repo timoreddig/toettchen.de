@@ -8,7 +8,7 @@ return [
         'extra' => true,
     ],
 
-    'cache' => false,
+    'cache' => true,
 
     'whoops' => true
 

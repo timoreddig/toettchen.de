@@ -1,6 +1,3 @@
-.DS_Store
-!media/
-!site/
 media/panel
 media/pages
 site/sessions

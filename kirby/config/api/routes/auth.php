@@ -2,6 +2,7 @@
 
 use Kirby\Exception\NotFoundException;
 use Kirby\Exception\InvalidArgumentException;
+use Kirby\Exception\PermissionException;
 
 /**
  * Authentication
@@ -23,6 +24,12 @@ return [
         'method'  => 'POST',
         'auth'    => false,
         'action'  => function () {
+            $auth = $this->kirby()->auth();
+
+            // csrf token check
+            if ($auth->type() === 'session' && $auth->csrf() === false) {
+                throw new InvalidArgumentException('Invalid CSRF token');
+            }
 
             $email    = $this->requestBody('email');
             $long     = $this->requestBody('long');
@@ -37,7 +44,6 @@ return [
             }
 
             throw new InvalidArgumentException('Invalid email or password');
-
         }
     ],
     [

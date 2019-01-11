@@ -18,7 +18,6 @@ use Kirby\Toolkit\Xml;
  * Field method setup
  */
 return function (App $app) {
-
     return [
 
         // states
@@ -189,7 +188,7 @@ return function (App $app) {
          * @return Pages
          */
         'toPages' => function (Field $field, string $separator = 'yaml') use ($app) {
-            return $app->site()->find(false, false, ...$field->toData('yaml'));
+            return $app->site()->find(false, false, ...$field->toData($separator));
         },
 
         /**
@@ -256,7 +255,7 @@ return function (App $app) {
          * @param Field $field
          * @param string $context html, attr, js or css
          */
-        'escape' => function(Field $field, string $context = 'html') {
+        'escape' => function (Field $field, string $context = 'html') {
             $field->value = esc($field->value, $context);
             return $field;
         },
@@ -387,5 +386,4 @@ return function (App $app) {
         },
 
     ];
-
 };
