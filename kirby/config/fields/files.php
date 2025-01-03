@@ -3,6 +3,7 @@
 use Kirby\Toolkit\A;
 
 return [
+    'mixins' => ['min'],
     'props' => [
         /**
          * Unset inherited props
@@ -72,7 +73,7 @@ return [
         /**
          * Query for the files to be included
          */
-        'query' => function (string $query = 'page.files') {
+        'query' => function (string $query = null) {
             return $query;
         },
 
@@ -104,6 +105,9 @@ return [
         },
         'parent' => function () {
             return $this->parentModel->apiUrl(true);
+        },
+        'query' => function () {
+            return $this->query ?? $this->parentModel::CLASS_ALIAS . '.files';
         },
         'default' => function () {
             return $this->toFiles($this->default);

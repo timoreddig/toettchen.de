@@ -1,6 +1,7 @@
 <?php
 
 use Kirby\Cms\App;
+use Kirby\Cms\Asset;
 use Kirby\Cms\Html;
 use Kirby\Cms\Response;
 use Kirby\Cms\Url;
@@ -10,6 +11,17 @@ use Kirby\Toolkit\Escape;
 use Kirby\Toolkit\F;
 use Kirby\Toolkit\I18n;
 use Kirby\Toolkit\View;
+
+/**
+ * Helper to create an asset object
+ *
+ * @param string $path
+ * @return Asset
+ */
+function asset(string $path)
+{
+    return new Asset($path);
+}
 
 /**
  * Generates a list of HTML attributes
@@ -87,20 +99,24 @@ function css($url, $options = null)
         return implode(PHP_EOL, $links);
     }
 
-    $href = $url === '@auto' ? Url::toTemplateAsset('css/templates', 'css') : Url::to($url);
-
-    $attr = [
-        'href' => $href,
-        'rel'  => 'stylesheet'
-    ];
-
     if (is_string($options) === true) {
-        $attr['media'] = $options;
+        $options = ['media' => $options];
     }
 
-    if (is_array($options) === true) {
-        $attr = array_merge($options, $attr);
+    $kirby = App::instance();
+
+    if ($url === '@auto') {
+        if (!$url = Url::toTemplateAsset('css/templates', 'css')) {
+            return null;
+        }
     }
+
+    $url  = $kirby->component('css')($kirby, $url, $options);
+    $url  = Url::to($url);
+    $attr = array_merge((array)$options, [
+        'href' => $url,
+        'rel'  => 'stylesheet'
+    ]);
 
     return '<link ' . attr($attr) . '>';
 }
@@ -245,10 +261,20 @@ function image(string $path = null)
         $uri = null;
     }
 
-    $page = $uri === '/' ? site() : page($uri);
+    switch ($uri) {
+        case '/':
+            $parent = site();
+            break;
+        case null:
+            $parent = page();
+            break;
+        default:
+            $parent = page($uri);
+            break;
+    }
 
-    if ($page) {
-        return $page->image($filename);
+    if ($parent) {
+        return $parent->image($filename);
     } else {
         return null;
     }
@@ -334,18 +360,21 @@ function js($url, $options = null)
         return implode(PHP_EOL, $scripts);
     }
 
-    $src  = $url === '@auto' ? Url::toTemplateAsset('js/templates', 'js') : Url::to($url);
-    $attr = [
-        'src' => $src,
-    ];
-
     if (is_bool($options) === true) {
-        $attr['async'] = $options;
+        $options = ['async' => $options];
     }
 
-    if (is_array($options) === true) {
-        $attr = array_merge($options, $attr);
+    $kirby = App::instance();
+
+    if ($url === '@auto') {
+        if (!$url = Url::toTemplateAsset('js/templates', 'js')) {
+            return null;
+        }
     }
+
+    $url  = $kirby->component('js')($kirby, $url, $options);
+    $url  = Url::to($url);
+    $attr = array_merge((array)$options, ['src' => $url]);
 
     return '<script ' . attr($attr) . '></script>';
 }
@@ -404,6 +433,45 @@ function kirbytext(string $text = null, array $data = []): string
 }
 
 /**
+ * Parses KirbyTags and inline Markdown in the
+ * given string.
+ * @since 3.1.0
+ *
+ * @param string $text
+ * @param array $data
+ * @return string
+ */
+function kirbytextinline(string $text = null, array $data = []): string
+{
+    return App::instance()->kirbytext($text, $data, true);
+}
+
+/**
+ * Shortcut for `kirbytext()` helper
+ *
+ * @param string $text
+ * @param array $data
+ * @return string
+ */
+function kt(string $text = null, array $data = []): string
+{
+    return kirbytext($text, $data);
+}
+
+/**
+ * Shortcut for `kirbytextinline()` helper
+ * @since 3.1.0
+ *
+ * @param string $text
+ * @param array $data
+ * @return string
+ */
+function kti(string $text = null, array $data = []): string
+{
+    return kirbytextinline($text, $data);
+}
+
+/**
  * A super simple class autoloader
  *
  * @param array $classmap
@@ -412,6 +480,9 @@ function kirbytext(string $text = null, array $data = []): string
  */
 function load(array $classmap, string $base = null)
 {
+    // convert all classnames to lowercase
+    $classmap = array_change_key_case($classmap);
+
     spl_autoload_register(function ($class) use ($classmap, $base) {
         $class = strtolower($class);
 
@@ -627,19 +698,24 @@ function snippet(string $name, $data = [], bool $return = false)
  */
 function svg(string $file)
 {
-    $root = App::instance()->root();
-    $file = $root . '/' . $file;
+    $extension = F::extension($file);
 
-    if (file_exists($file) === false) {
+    // check for valid svg files
+    if ($extension !== 'svg') {
         return false;
     }
 
-    ob_start();
-    include F::realpath($file, $root);
-    $svg = ob_get_contents();
-    ob_end_clean();
+    // try to convert relative paths to absolute
+    if (file_exists($file) === false) {
+        $root = App::instance()->root();
+        $file = realpath($root . '/' . $file);
 
-    return $svg;
+        if (file_exists($file) === false) {
+            return false;
+        }
+    }
+
+    return F::read($file);
 }
 
 /**
@@ -689,7 +765,7 @@ function twitter(string $username, string $text = null, string $title = null, st
  * Shortcut for url()
  *
  * @param string $path
- * @param array|null $options
+ * @param array|string|null $options
  * @return string
  */
 function u(string $path = null, $options = null): string
@@ -701,7 +777,7 @@ function u(string $path = null, $options = null): string
  * Builds an absolute URL for a given path
  *
  * @param string $path
- * @param array $options
+ * @param array|string|null $options
  * @return string
  */
 function url(string $path = null, $options = null): string

@@ -2,4 +2,4 @@ Template: image
 
 ----
 
-Sort: 7
+Sort: 8

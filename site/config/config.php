@@ -1,11 +1,15 @@
 <?php
-return [
-	'panel' => false,
 
-    'debug' => false,
+return [
+
+    'debug' => true,
+
+    'markdown' => [
+        'extra' => true,
+    ],
 
     'cache' => true,
 
-    'whoops' => false
+    'whoops' => true
 
 ];

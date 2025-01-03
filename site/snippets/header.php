@@ -7,5 +7,6 @@
 		<?php endforeach ?>
 		</ul>
 	</nav>
+	<button class="nav-toggle" aria-label="Toggle navigation">&#9776;</button>
 	<?php snippet('footer') ?>
 </header>

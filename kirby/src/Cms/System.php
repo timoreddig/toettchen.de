@@ -191,10 +191,6 @@ class System
      */
     public function isOk(): bool
     {
-        if ($this->isInstallable() === false) {
-            return false;
-        }
-
         return in_array(false, array_values($this->status()), true) === false;
     }
 
@@ -338,7 +334,7 @@ class System
      */
     public function php(): bool
     {
-        return version_compare(phpversion(), '7.1.0', '>');
+        return version_compare(phpversion(), '7.1.0', '>=');
     }
 
     /**

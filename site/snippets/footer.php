@@ -4,5 +4,4 @@
       <?php echo $link ? '<li class="article-footer__item"><a href="' . $link->url() . '">' . $link->title()->html() . '</a></li>' : '' ?>
     <?php endforeach; ?>
   </ul>
-  <p><a href="https://twitter.com/toettchen">Auf Twitter folgen</a></p>
 </footer>

@@ -21,7 +21,8 @@ class Form extends BaseForm
 
         if ($kirby->multilang() === true) {
             $fields            = $props['fields'] ?? [];
-            $isDefaultLanguage = $kirby->language()->isDefault();
+            $languageCode      = $props['language'] ?? $kirby->language()->code();
+            $isDefaultLanguage = $languageCode === $kirby->defaultLanguage()->code();
 
             foreach ($fields as $fieldName => $fieldProps) {
                 // switch untranslatable fields to readonly
@@ -40,10 +41,18 @@ class Form extends BaseForm
     public static function for(Model $model, array $props = [])
     {
         // get the original model data
-        $original = $model->content()->toArray();
+        $original = $model->content($props['language'] ?? null)->toArray();
+        $values   = $props['values'] ?? [];
+
+        // convert closures to values
+        foreach ($values as $key => $value) {
+            if (is_a($value, 'Closure') === true) {
+                $values[$key] = $value($original[$key] ?? null);
+            }
+        }
 
         // set a few defaults
-        $props['values'] = array_merge($original, $props['values'] ?? []);
+        $props['values'] = array_merge($original, $values);
         $props['fields'] = $props['fields'] ?? [];
         $props['model']  = $model;
 

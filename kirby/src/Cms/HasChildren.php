@@ -91,11 +91,11 @@ trait HasChildren
     }
 
     /**
-     * Return all drafts for the site
+     * Return all drafts of the model
      *
      * @return Pages
      */
-    public function drafts(): Pages
+    public function drafts()
     {
         if (is_a($this->drafts, 'Kirby\Cms\Pages') === true) {
             return $this->drafts;
@@ -166,8 +166,7 @@ trait HasChildren
     }
 
     /**
-     * Deprecated! Use Page::hasUnlistedChildren
-     *
+     * @deprecated 3.0.0 Use `Page::hasUnlistedChildren` instead
      * @return boolean
      */
     public function hasInvisibleChildren(): bool
@@ -196,8 +195,7 @@ trait HasChildren
     }
 
     /**
-     * Deprecated! Use Page::hasListedChildren
-     *
+     * @deprecated 3.0.0 Use `Page::hasListedChildren` instead
      * @return boolean
      */
     public function hasVisibleChildren(): bool

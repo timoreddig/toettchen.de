@@ -4,7 +4,6 @@
   <?php snippet('head') ?>
 
   <body>
-    <div class="page">
 
       <main>
 
@@ -31,12 +30,10 @@
         </article>
 
         <aside>
-          <?php snippet('logo') ?>
+          <div><?php snippet('logo') ?></div>
         </aside>
 
       </main>
-
-    </div>
 
   </body>
 </html>

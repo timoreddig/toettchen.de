@@ -119,8 +119,17 @@ return function (App $app) {
          *
          * @return Files
          */
-        'toFiles' => function (Field $field) {
-            return $field->parent()->files()->find(false, false, ...$field->toData('yaml'));
+        'toFiles' => function (Field $field, string $separator = 'yaml') {
+            $parent = $field->parent();
+            $files  = new Files([]);
+
+            foreach ($field->toData($separator) as $id) {
+                if ($file = $parent->kirby()->file($id, $parent)) {
+                    $files->add($file);
+                }
+            }
+
+            return $files;
         },
 
         /**
@@ -226,8 +235,8 @@ return function (App $app) {
          *
          * @return Users
          */
-        'toUsers' => function (Field $field) use ($app) {
-            return $app->users()->find(false, false, ...$field->toData('yaml'));
+        'toUsers' => function (Field $field, string $separator = 'yaml') use ($app) {
+            return $app->users()->find(false, false, ...$field->toData($separator));
         },
 
         // inspectors
@@ -285,6 +294,19 @@ return function (App $app) {
                 'parent' => $field->parent(),
                 'field'  => $field
             ]);
+
+            return $field;
+        },
+
+        /**
+         * Converts the field content from inline Markdown/Kirbytext to valid HTML
+         * @since 3.1.0
+         */
+        'kirbytextinline' => function (Field $field) use ($app) {
+            $field->value = $app->kirbytext($field->value, [
+                'parent' => $field->parent(),
+                'field'  => $field
+            ], true);
 
             return $field;
         },
