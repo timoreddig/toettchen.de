@@ -26,7 +26,7 @@ html {
   font-family: "Source Serif Pro";
 }
 @media (max-width: 768px) {
-  .main-nav {
+  .main-nav__list {
     display: none;
     flex-direction: column;
     gap: 0.5rem;
@@ -38,16 +38,15 @@ html {
     width: 100%;
   }
 
-  .main-nav.active {
+  .main-nav__list.active {
     display: flex;
-  }
-
+  }w
   .nav-toggle {
     display: block;
     background: none;
     border: none;
     color: white;
-    font-size: 1.5rem;
+    font-size: 2rem;
     cursor: pointer;
   }
 }
@@ -81,8 +80,11 @@ html {
     position: fixed;
   }
 }
+.nav-toggle {
+    display: none;
+}
 article {
-  line-height: 1.5em;  
+  line-height: 1.5em;
 }
 h1, h2, h3, ul, ol, p, figure {
   margin-bottom: 1.5rem;
@@ -123,9 +125,12 @@ strong, b {
   width: 100%;
 }
 .logo {
+  bottom: 40px;
   display: block;
   font-weight: 500;
   margin-bottom: 1rem;
+  position: fixed;
+  right: 40px;
   width: 50px;
 }
 .article-footer {
