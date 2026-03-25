@@ -25,63 +25,143 @@ body {
 html {
   font-family: "Source Serif Pro";
 }
-@media (max-width: 768px) {
-  .main-nav__list {
-    display: none;
-    flex-direction: column;
-    gap: 0.5rem;
-    background-color: #333;
-    padding: 1rem;
-    position: absolute;
-    top: 60px;
-    right: 0;
-    width: 100%;
+main {
+  background: #FFF;
+}
+
+.header {
+  padding: 2rem 1.5rem;
+  position: relative;
+  background: #FFF;
+  border-bottom: 1px solid #eee;
+}
+
+.header h1 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.main-nav {
+  position: relative;
+}
+
+.nav-toggle {
+  display: block;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  position: absolute;
+  top: -3rem;
+  right: 0;
+}
+
+.main-nav__list {
+  display: none;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem 0;
+  list-style: none;
+}
+
+.main-nav__list.active {
+  display: flex;
+}
+
+article {
+  padding: 2rem 1.5rem;
+}
+
+aside {
+  display: none;
+}
+
+.article-footer {
+  position: static;
+  padding: 2rem 1.5rem;
+  border-top: 1px solid #eee;
+  margin-top: 2rem;
+}
+
+.logo {
+  display: none;
+}
+
+@media (min-width: 48em) {
+  .header {
+    padding: 3rem 2.5rem;
   }
 
-  .main-nav__list.active {
-    display: flex;
-  }w
-  .nav-toggle {
-    display: block;
-    background: none;
-    border: none;
-    color: white;
-    font-size: 2rem;
-    cursor: pointer;
+  article {
+    padding: 3rem 2.5rem;
   }
 }
 
 @media (min-width: 64em) {
   main {
-    background: #FFF;
     display: grid;
     grid-template-rows: 100vh;
     grid-template-columns: 20vw 50vw 30vw;
-    grid-template-areas:  
+    grid-template-areas:
     "header content sidebar";
   }
+
+  .header {
+    grid-area: header;
+    padding: 5vh 5vw 10vh;
+    position: relative;
+    width: 20vw;
+    border-bottom: none;
+  }
+
+  .header h1 {
+    font-size: 2rem;
+  }
+
+  .nav-toggle {
+    display: none;
+  }
+
+  .main-nav {
+    position: fixed;
+  }
+
+  .main-nav__list {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+  }
+
   article {
     grid-area: content;
     padding: 5vh 5vw 10vh;
   }
+
   aside {
+    display: block;
     background: url(../img/toettchen-gurken-toast-teller.jpg) no-repeat center center fixed;
     background-size: cover;
     grid-area: sidebar;
     width: 30vw;
   }
-  .header {
-    grid-area: header;
-	  padding: 5vh 5vw 10vh;
-	  position: relative;
-	  width: 20vw;
-  }
-  .main-nav {
+
+  .article-footer {
+    left: 5vw;
+    bottom: 5vh;
     position: fixed;
+    padding: 0;
+    border-top: none;
+    margin-top: 0;
   }
-}
-.nav-toggle {
-    display: none;
+
+  .logo {
+    display: block;
+    bottom: 40px;
+    position: fixed;
+    right: 40px;
+    width: 50px;
+  }
 }
 article {
   line-height: 1.5em;
