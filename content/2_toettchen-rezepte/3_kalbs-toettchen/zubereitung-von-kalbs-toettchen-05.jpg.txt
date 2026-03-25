@@ -1,9 +1,0 @@
-Template: image
-
-----
-
-Sort: 5
-
-----
-
-Alt: Mit Essig, etwas Zucker, Brühe und Senf wird die Sauce abgeschmeckt

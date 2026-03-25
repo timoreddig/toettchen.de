@@ -1,1 +1,0 @@
-<a href="<?php echo $site->url() ?>"><img src="<?php echo $site->url(); ?>/assets/img/toettchen-logo.png" alt="<?php echo $site->title() ?>" class="logo" /></a>

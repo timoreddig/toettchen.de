@@ -1,9 +1,0 @@
-Template: image
-
-----
-
-Sort: 1
-
-----
-
-Alt: Das Kalbs-Töttchen wird in kleine Würfel geschnitten

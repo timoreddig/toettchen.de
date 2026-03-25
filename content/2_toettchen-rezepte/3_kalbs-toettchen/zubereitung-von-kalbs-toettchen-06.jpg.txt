@@ -1,9 +1,0 @@
-Template: image
-
-----
-
-Sort: 6
-
-----
-
-Alt: Alles zusammen in der Pfanne gut verrühren
