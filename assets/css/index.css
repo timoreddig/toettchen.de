@@ -52,7 +52,7 @@ main {
   font-size: 1.5rem;
   cursor: pointer;
   padding: 0.5rem;
-  position: absolute;
+  position: fixed;
   top: 1.5rem;
   right: 1.5rem;
   z-index: 1001;
@@ -183,9 +183,9 @@ article {
 }
 h1, h2, h3, ul, ol, p, figure {
   margin-bottom: 1.5rem;
+  line-height: 1.1em;
 }
 li {
-  list-style: disc;
   margin-left: 25px;
 }
 a {
