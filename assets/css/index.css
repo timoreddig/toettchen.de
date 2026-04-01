@@ -52,25 +52,26 @@ main {
   font-size: 1.5rem;
   cursor: pointer;
   padding: 0.5rem;
-  position: absolute;
+  position: fixed;
   top: 1.5rem;
   right: 1.5rem;
-  z-index: 1000;
+  z-index: 1001;
 }
 
 .main-nav__list {
   display: none;
   flex-direction: column;
   gap: 0.5rem;
-  padding: 1rem 0;
+  padding: 1rem 1.5rem;
   list-style: none;
-  position: absolute;
-  top: 100%;
+  position: fixed;
+  top: 4.5rem;
   left: 0;
   right: 0;
   background: #FFF;
   border-top: 1px solid #eee;
-  z-index: 999;
+  border-bottom: 1px solid #eee;
+  z-index: 1000;
 }
 
 .main-nav__list.active {
