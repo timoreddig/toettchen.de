@@ -52,7 +52,7 @@ main {
   font-size: 1.5rem;
   cursor: pointer;
   padding: 0.5rem;
-  position: fixed;
+  position: absolute;
   top: 1.5rem;
   right: 1.5rem;
   z-index: 1001;
@@ -140,6 +140,12 @@ aside {
     display: flex;
     flex-direction: column;
     padding: 0;
+    position: static;
+    top: auto;
+    left: auto;
+    right: auto;
+    background: transparent;
+    border: none;
   }
 
   article {
