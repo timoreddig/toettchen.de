@@ -87,12 +87,14 @@ aside {
 }
 
 .article-footer {
-  position: static;
-  padding: 2rem 1.5rem;
   border-top: 1px solid #eee;
+  bottom: 0;
+  left: 0;
+  padding: 2rem 1.5rem;
   margin-top: 2rem;
+  position: fixed;
+  width: 100%;
 }
-
 .logo {
   display: none;
 }
@@ -234,10 +236,14 @@ strong, b {
   position: fixed;
 }
 .article-footer__nav {
-  display: block;
+  display: flex;
   font-weight: 500;
+  justify-content: space-around;
   margin-bottom: 1rem;
+  padding: 1rem;
+  padding-bottom: 0;
 }
+
 .article-footer__item {
   list-style: none;
   margin: 0 .5px .125rem;
