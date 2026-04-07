@@ -28,7 +28,7 @@ html {
 
 body {
   hyphens: auto;
-  line-height: 1.1em;
+  line-height: 1.75em;
 }
 
 main {
@@ -125,7 +125,6 @@ li {
 }
 
 article {
-  line-height: 1.5em;
   padding: 2rem 1.5rem;
 }
 
@@ -155,7 +154,6 @@ aside {
   left: 0;
   margin-top: 2rem;
   position: fixed;
-  padding: 2rem 1.5rem;
   width: 100%;
 }
 
